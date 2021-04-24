@@ -1,3 +1,16 @@
+"use strict";
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+var e_1, _a;
 var MyContainer = /** @class */ (function () {
     function MyContainer() {
     }
@@ -15,9 +28,18 @@ var MyContainer = /** @class */ (function () {
     return MyContainer;
 }());
 var myObject = new MyContainer();
-for (var _i = 0, myObject_1 = myObject; _i < myObject_1.length; _i++) {
-    var element = myObject_1[_i];
-    console.log(element);
+try {
+    for (var myObject_1 = __values(myObject), myObject_1_1 = myObject_1.next(); !myObject_1_1.done; myObject_1_1 = myObject_1.next()) {
+        var element = myObject_1_1.value;
+        console.log(element);
+    }
+}
+catch (e_1_1) { e_1 = { error: e_1_1 }; }
+finally {
+    try {
+        if (myObject_1_1 && !myObject_1_1.done && (_a = myObject_1.return)) _a.call(myObject_1);
+    }
+    finally { if (e_1) throw e_1.error; }
 }
 var iterator = myObject[Symbol.iterator]();
 var iteratorResult = iterator.next();
