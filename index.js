@@ -24,7 +24,7 @@ let iterator = myObject[Symbol.iterator]();
 let value = iterator.next();
 console.log(value.done);
 
-while (!iterator.done){
+while (!value.done){
   console.log(value.value);
   value = iterator.next();
 }
