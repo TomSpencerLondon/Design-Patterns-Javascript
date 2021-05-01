@@ -27,24 +27,31 @@ var MyContainer = /** @class */ (function () {
     };
     return MyContainer;
 }());
-var myObject = new MyContainer();
+// const myObject = new MyContainer();
+//
+// for (let element of myObject){
+//   console.log(element);
+// }
+//
+// let iterator = myObject[Symbol.iterator]();
+// let iteratorResult = iterator.next();
+// console.log(iteratorResult.done);
+//
+// while (!iteratorResult.done){
+//   console.log(iteratorResult.value);
+//   iteratorResult = iterator.next();
+// }
+var arr = [1, 2, 3, 4];
 try {
-    for (var myObject_1 = __values(myObject), myObject_1_1 = myObject_1.next(); !myObject_1_1.done; myObject_1_1 = myObject_1.next()) {
-        var element = myObject_1_1.value;
-        console.log(element);
+    for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
+        var el = arr_1_1.value;
+        console.log(el);
     }
 }
 catch (e_1_1) { e_1 = { error: e_1_1 }; }
 finally {
     try {
-        if (myObject_1_1 && !myObject_1_1.done && (_a = myObject_1.return)) _a.call(myObject_1);
+        if (arr_1_1 && !arr_1_1.done && (_a = arr_1.return)) _a.call(arr_1);
     }
     finally { if (e_1) throw e_1.error; }
-}
-var iterator = myObject[Symbol.iterator]();
-var iteratorResult = iterator.next();
-console.log(iteratorResult.done);
-while (!iteratorResult.done) {
-    console.log(iteratorResult.value);
-    iteratorResult = iterator.next();
 }

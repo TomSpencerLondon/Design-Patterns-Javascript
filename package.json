@@ -2,10 +2,11 @@
   "name": "Iterator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/iterator.js",
   "scripts": {
     "build": "tsc",
-    "run": "ts-node index.ts",
+    "run:dev": "ts-node src/strategy.ts",
+    "run": "node dist/iterator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
