@@ -1,3 +1,5 @@
+import { writeFileSync } from 'fs';
+
 interface Input {
   read(): string;
 }
@@ -12,7 +14,7 @@ interface Converter {
 
 class StaticInput implements Input {
   read(): string {
-    return "File";
+    return "Static";
   }
 }
 
@@ -22,9 +24,23 @@ class NoConvert implements Converter {
   }
 }
 
+class TimestampConvert implements Converter {
+  convert(str: string): string {
+    return `${Date.now()}: ${str}`;
+  }
+}
+
 class ConsoleOutput implements Output {
   write(str: string): void {
     console.log(str);
+  }
+}
+
+class FileOutput implements Output {
+  constructor(private path: string) {
+  }
+  write(str: string): void {
+    writeFileSync(this.path, str);
   }
 }
 
@@ -53,9 +69,13 @@ class Logger implements Input, Output, Converter {
   }
 }
 
-const logger = new Logger(new StaticInput, new ConsoleOutput, new NoConvert);
-logger.run();
+const basicLogger = new Logger(new StaticInput, new ConsoleOutput, new NoConvert);
+basicLogger.run();
 
+const timeStampLogger = new Logger(new StaticInput, new FileOutput('log.txt'), new TimestampConvert);
+timeStampLogger.run();
+
+// FileOutput - saves in current working directory
 
 // Example of strategy pattern
 // ELK Stack - Elasticsearch, Logstash, and Kibana
