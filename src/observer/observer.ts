@@ -48,8 +48,7 @@ class ConcreteObserver {
     public next: (counter: number) => void,
     public error: () => void,
     public complete: () => void
-  ) {
-  }
+  ) {}
 }
 
 const observable = new ConcreteObservable();
