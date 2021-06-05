@@ -29,10 +29,17 @@ interface Observable {
 
 class ConcreteObservable {
   subscribe(observer: Observer): void {
-    for (let i = 0; i < 5; i++){
+    let counter = 0;
+
+    const interval = setInterval(() => {
       observer.next();
-    }
-    observer.complete();
+      ++counter;
+      if (counter === 5) {
+        clearInterval(interval);
+        observer.complete();
+      }
+    }, 400);
+
   }
 }
 
