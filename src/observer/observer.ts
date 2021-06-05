@@ -17,7 +17,7 @@
 // Observable and observer
 
 interface Observer {
-  next(): void;
+  next(counter: number): void;
   error(): void;
   complete(): void;
 }
@@ -32,7 +32,7 @@ class ConcreteObservable {
     let counter = 0;
 
     const interval = setInterval(() => {
-      observer.next();
+      observer.next(counter);
       ++counter;
       if (counter === 5) {
         clearInterval(interval);
@@ -44,23 +44,39 @@ class ConcreteObservable {
 }
 
 class ConcreteObserver {
-  next(): void {
-    console.log("Next");
-  }
-
-  error(): void {
-    console.log("Error");
-  }
-
-  complete(): void {
-    console.log("Complete");
+  constructor(
+    public next: (counter: number) => void,
+    public error: () => void,
+    public complete: () => void
+  ) {
   }
 }
 
 const observable = new ConcreteObservable();
-const observer = new ConcreteObserver();
+const observer = new ConcreteObserver(
+  (counter: number) => {
+    console.log('Next');
+  },() => {
+    console.log('Error');
+  },() => {
+    console.log('Complete');
+  },
+);
+
 
 observable.subscribe(observer);
+
+observable.subscribe(new ConcreteObserver(
+  (counter: number) => {
+    console.log("Observer 2, Next: " + counter);
+  },
+  () => {
+    console.log("Error2");
+  },
+  () => {
+    console.log("Complete2");
+  },
+));
 
 
 
