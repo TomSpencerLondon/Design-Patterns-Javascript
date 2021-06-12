@@ -26,3 +26,4 @@ const observer: Observer<number> = {
 }
 
 observable.subscribe(observer);
+

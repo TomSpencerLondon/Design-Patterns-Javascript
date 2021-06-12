@@ -28,16 +28,21 @@ const observable = new Observable<string>(subscriber => {
 
 });
 
-const observer: Observer<string> = {
-  next(data: string) {
-    console.log(data);
-  },
-  error(err: string) {
-    console.log(err);
-  },
-  complete() {
-    console.log('Complete');
-  }
-}
+// const observer: Observer<string> = {
+//   next(data: string) {
+//     console.log(data);
+//   },
+//   error(err: string) {
+//     console.log(err);
+//   },
+//   complete() {
+//     console.log('Complete');
+//   }
+// }
+//
+// observable.subscribe(observer);
 
-observable.subscribe(observer);
+(async () => {
+  const response = await observable.toPromise();
+  console.log(response);
+})();
