@@ -1,13 +1,14 @@
-import https from 'http';
+import http from 'http';
 import { Observable, Observer } from 'rxjs';
 
 const observable = new Observable<string>(subscriber => {
   const options = {
     hostname: 'www.google.com',
+    port: 80,
     method: 'GET'
   }
 
-  const req = https.request(options, (res) => {
+  const req = http.request(options, (res) => {
     let data = '';
     res.on('data', (chunk) => {
       data += chunk;
